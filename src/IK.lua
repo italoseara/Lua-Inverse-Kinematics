@@ -66,7 +66,6 @@ function Segment:draw(debug)
         love.graphics.circle("fill", self.a.x, self.a.y, 5)
         love.graphics.circle("fill", self.b.x, self.b.y, 5)
     end
-    love.graphics.circle("fill", self.b.x, self.b.y, 5)
 end
 
 local IK = {}
