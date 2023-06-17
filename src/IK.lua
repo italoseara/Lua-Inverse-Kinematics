@@ -1,5 +1,3 @@
-local Vector = require "vector"
-
 local module = {
     _version = "Lua-Inverse-Kinematics v2023.0.1",
     _description = "A simple Inverse Kinematics library for LÖVE",
@@ -28,6 +26,8 @@ local module = {
         SOFTWARE.
     ]]
 }
+
+local Vector = require "vector"
 
 local Segment = {}
 Segment.__index = Segment
@@ -59,7 +59,6 @@ function Segment:follow(target)
 end
 
 function Segment:draw(debug)
-    love.graphics.setColor(1, 1, 1)
     love.graphics.line(self.a.x, self.a.y, self.b.x, self.b.y)
 
     if debug then
