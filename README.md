@@ -70,6 +70,14 @@ Sets the target of the `IK` object.
 
 Updates the `IK` object.
 
+### Segment:getMediumPoint()
+
+Returns the medium point of the `Segment` object.
+
+### Segment:pullTo(x, y, strength)
+
+Pulls the `Segment` object to the given point.
+
 ### IK:draw()
 
 Draws the `IK` object.
