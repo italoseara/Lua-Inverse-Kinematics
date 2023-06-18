@@ -32,12 +32,14 @@ local Vector = require "vector"
 local Segment = {}
 Segment.__index = Segment
 
-function Segment.new(length)
+function Segment.new(length, maxAngle, minAngle)
     local self = setmetatable({}, Segment)
     self.a = Vector(0, 0)
     self.b = Vector(0, 0)
     self.length = length
     self.angle = 0
+    self.maxAngle = maxAngle
+    self.minAngle = minAngle
     return self
 end
 
@@ -45,6 +47,12 @@ function Segment:update()
     local d = Vector.fromPolar(self.angle, self.length)
     self.b.x = self.a.x + d.x
     self.b.y = self.a.y + d.y
+
+    if self.maxAngle ~= nil and self.angle > self.maxAngle then
+        self.angle = self.maxAngle
+    elseif self.minAngle ~= nil and self.angle < self.minAngle then
+        self.angle = self.minAngle
+    end
 end
 
 function Segment:follow(target)
@@ -99,8 +107,8 @@ function IK:setFixedPoint(x, y)
     self.fixedPoint = Vector(x, y)
 end
 
-function IK:addSegment(length)
-    table.insert(self.segments, Segment.new(length))
+function IK:addSegment(length, maxAngle, minAngle)
+    table.insert(self.segments, Segment.new(length, maxAngle, minAngle))
 end
 
 function IK:setTarget(x, y)
